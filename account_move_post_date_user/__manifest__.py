@@ -3,12 +3,12 @@
 {
     "name": "Account Move Post Date User",
     "summary": "Trace journal entry posting date and user.",
-    "version": "16.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Accounting",
     "website": "https://github.com/OCA/account-financial-tools",
     "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "maintainers": ["JordiMForgeFlow"],
     "license": "LGPL-3",
-    "depends": ["account",],
+    "depends": ["account"],
     "data": ["views/account_move.xml"],
 }

@@ -4,7 +4,7 @@
 from odoo import fields
 from odoo.tests import tagged
 
-from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+from odoo.addons.account.tests.account_test_savepoint import AccountTestInvoicingCommon
 
 
 @tagged("post_install", "-at_install")
@@ -47,5 +47,6 @@ class TestAccountMovePostDateUser(AccountTestInvoicingCommon):
 
     def test_account_move_post_date_user(self):
         self.move.action_post()
+        self.assertEqual(self.move.state, "posted")
         self.assertEqual(self.move.last_post_date.date(), fields.Date.today())
         self.assertEqual(self.move.last_post_uid, self.env.user)
