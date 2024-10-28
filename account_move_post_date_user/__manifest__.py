@@ -9,8 +9,6 @@
     "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "maintainers": ["JordiMForgeFlow"],
     "license": "LGPL-3",
-    "depends": [
-        "account",
-    ],
+    "depends": ["account",],
     "data": ["views/account_move.xml"],
 }
