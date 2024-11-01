@@ -1,28 +1,45 @@
 # Copyright 2024 Moduon Team S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0)
 
-from odoo import models
+from odoo import fields, models
 from odoo.tools import ormcache
 
 
 class WizardUpdateChartsAccount(models.TransientModel):
     _inherit = "wizard.update.charts.accounts"
 
+    lang = fields.Selection(default="en_US")
+
     @ormcache("self.lang")
     def _other_langs(self):
         return self.env["res.lang"].search([("code", "!=", self.lang)]).mapped("code")
 
+    def _get_lang_selection_options(self):
+        """Only can translate in base language by default."""
+        en = self.env["res.lang"]._lang_get("en_US")
+        return [(en.code, en.name)]
+
     def _update_other_langs(self, templates):
-        for _, tpl_xmlid in templates.get_external_id().items():
+        for tpl_xmlid in templates.get_external_id().values():
             template = self.env.ref(tpl_xmlid)
             module, xmlid = tpl_xmlid.split(".", 1)
             rec_xmlid = f"{module}.{self.company_id.id}_{xmlid}"
             rec = self.env.ref(rec_xmlid)
-            for lang in self._other_langs():
-                lang_tpl = template.with_context(lang=lang)
-                for key in self._diff_translate_fields(template, rec):
-                    lang_rec = rec.with_context(lang=lang)
-                    lang_rec[key] = lang_tpl[key]
+            translations = {}
+            for key in self._diff_translate_fields(template, rec):
+                for lang in self._other_langs():
+                    field = rec._fields[key]
+                    old_value = field._get_stored_translations(rec).get(
+                        rec.env.lang, "en_US"
+                    )
+                    if old_value.startswith("<p>") and old_value.endswith("</p>"):
+                        old_value = old_value[3:-4]
+                    is_callable = callable(field.translate)
+                    translated = template.with_context(lang=lang)[key]
+                    translations[lang] = (
+                        {old_value: translated} if is_callable else translated
+                    )
+                rec.update_field_translations(key, translations)
 
     def _diff_translate_fields(self, template, real):
         """Find differences by comparing the translations of the fields."""
