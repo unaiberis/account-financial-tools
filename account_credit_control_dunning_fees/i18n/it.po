@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: account-financial-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-14 00:45+0000\n"
-"PO-Revision-Date: 2023-06-08 12:08+0000\n"
+"PO-Revision-Date: 2024-11-04 16:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/"
 "OCA-account-financial-tools-8-0/language/it/)\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: account_credit_control_dunning_fees
 #: model:ir.model,name:account_credit_control_dunning_fees.model_credit_control_line
@@ -124,7 +124,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: account_credit_control_dunning_fees
 #: view:credit.control.policy:account_credit_control_dunning_fees.add_dunning_fees_on_policy
 msgid "Mail and reporting"
-msgstr "Mail e report"
+msgstr "E-amil e rendicontazione"
 
 #. module: account_credit_control_dunning_fees
 #: field:credit.control.policy.level,dunning_fees_type:0
