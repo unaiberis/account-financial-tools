@@ -24,7 +24,9 @@ class WizardUpdateChartsAccount(models.TransientModel):
             template = self.env.ref(tpl_xmlid)
             module, xmlid = tpl_xmlid.split(".", 1)
             rec_xmlid = f"{module}.{self.company_id.id}_{xmlid}"
-            rec = self.env.ref(rec_xmlid)
+            rec = self.env.ref(rec_xmlid, False)
+            if not rec:
+                continue
             translations = {}
             for key in self._diff_translate_fields(template, rec):
                 for lang in self._other_langs():
@@ -45,12 +47,12 @@ class WizardUpdateChartsAccount(models.TransientModel):
         """Find differences by comparing the translations of the fields."""
         res = {}
         to_include = self.fields_to_include(template._name)
-        for key in template._fields:
-            if not template._fields[key].translate or key not in to_include:
+        for key in to_include:
+            if not (template._fields.get(key) and template._fields[key].translate):
                 continue
             for lang in self._other_langs():
-                template_trans = getattr(template.with_context(lang=lang), key)
-                real_trans = getattr(real.with_context(lang=lang), key)
+                template_trans = template.with_context(lang=lang)[key]
+                real_trans = real.with_context(lang=lang)[key]
                 if template_trans != real_trans:
                     res[key] = template[key]
         return res

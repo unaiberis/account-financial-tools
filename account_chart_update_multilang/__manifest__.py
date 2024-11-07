@@ -17,4 +17,7 @@
         "account_chart_update",
         "l10n_multilang",
     ],
+    "data": [
+        "wizards/wizard_chart_update_views.xml",
+    ],
 }
