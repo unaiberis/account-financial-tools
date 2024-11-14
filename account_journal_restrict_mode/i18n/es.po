@@ -17,6 +17,7 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: account_journal_restrict_mode
+#: model:ir.model.fields,help:account_journal_restrict_mode.field_account_bank_statement_import_journal_creation__restrict_mode_hash_table
 #: model:ir.model.fields,help:account_journal_restrict_mode.field_account_journal__restrict_mode_hash_table
 msgid ""
 "If ticked, the accounting entry or invoice receives a hash as soon as it is "
@@ -31,13 +32,13 @@ msgid "Journal"
 msgstr "Diario"
 
 #. module: account_journal_restrict_mode
-#. odoo-python
 #: code:addons/account_journal_restrict_mode/models/account_journal.py:0
 #, python-format
 msgid "Journal %s must have Lock Posted Entries enabled."
 msgstr "El diario %s debe tener Activado el Bloqueo de Asientos."
 
 #. module: account_journal_restrict_mode
+#: model:ir.model.fields,field_description:account_journal_restrict_mode.field_account_bank_statement_import_journal_creation__restrict_mode_hash_table
 #: model:ir.model.fields,field_description:account_journal_restrict_mode.field_account_journal__restrict_mode_hash_table
 msgid "Lock Posted Entries with Hash"
 msgstr "Bloquear Entradas Publicadas con Hash"
