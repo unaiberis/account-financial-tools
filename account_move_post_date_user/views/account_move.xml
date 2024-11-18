@@ -5,11 +5,7 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='accounting_info_group']" position="inside">
-                <field name="last_post_date" />
-                <field name="last_post_uid" />
-            </xpath>
-            <xpath expr="//group[@name='misc_group']" position="inside">
+            <xpath expr="//field[@name='reverse_entry_id']" position="after">
                 <field name="last_post_date" />
                 <field name="last_post_uid" />
             </xpath>

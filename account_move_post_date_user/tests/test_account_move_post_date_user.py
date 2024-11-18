@@ -3,19 +3,38 @@
 
 from odoo import fields
 from odoo.tests import tagged
-
-from odoo.addons.account.tests.account_test_savepoint import AccountTestInvoicingCommon
+from odoo.addons.account.tests.account_test_classes import AccountingTestCase
 
 
 @tagged("post_install", "-at_install")
-class TestAccountMovePostDateUser(AccountTestInvoicingCommon):
+class TestAccountMovePostDateUser(AccountingTestCase):
     def setUp(self):
         super(TestAccountMovePostDateUser, self).setUp()
         self.account_move_obj = self.env["account.move"]
         self.partner = self.browse_ref("base.res_partner_12")
-        self.account = self.company_data["default_account_revenue"]
-        self.account2 = self.company_data["default_account_expense"]
-        self.journal = self.company_data["default_journal_bank"]
+        self.user_type_revenue = self.env.ref('account.data_account_type_revenue')
+        self.account = self.env['account.account'].create({
+            'code': 'NC1114',
+            'name': 'Revenue Account',
+            'user_type_id': self.user_type_revenue.id,
+            'reconcile': True
+        })
+        self.account2 = self.account_expense = self.env['account.account'].search([
+            ('user_type_id', '=', self.env.ref(
+                'account.data_account_type_expenses').id)
+        ], limit=1)
+        self.bank = self.env['res.partner.bank'].create({
+            'acc_number': '123456',
+            'partner_id': self.env.ref('base.main_partner').id,
+            'company_id': self.env.ref('base.main_company').id,
+            'bank_id': self.env.ref('base.res_bank_1').id,
+        })
+        self.journal = self.env['account.journal'].create({
+            'name': 'Bank Journal TEST OFX',
+            'code': 'BNK12',
+            'type': 'bank',
+            'bank_account_id': self.bank.id,
+        })
 
         # create a move and post it
         self.move = self.account_move_obj.create(

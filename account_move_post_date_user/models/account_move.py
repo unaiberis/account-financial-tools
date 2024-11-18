@@ -14,8 +14,8 @@ class AccountMove(models.Model):
         "res.users", string="Last Posted by", readonly=True, tracking=True
     )
 
-    def post(self):
-        res = super().post()
+    def post(self, invoice=False):
+        res = super().post(invoice=invoice)
         self.write(
             {
                 "last_post_date": fields.Datetime.now(),
