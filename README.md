@@ -53,6 +53,7 @@ addon | version | maintainers | summary
 [account_move_line_partner_country](account_move_line_partner_country/) | 12.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Show Partner's Country on Account Move Line.
 [account_move_line_purchase_info](account_move_line_purchase_info/) | 12.0.2.0.0 |  | Introduces the purchase order line to the journal items
 [account_move_line_tax_editable](account_move_line_tax_editable/) | 12.0.1.1.0 |  | Allows to edit taxes on non-posted account move lines
+[account_move_post_date_user](account_move_post_date_user/) | 12.0.1.0.0 | [![JordiMForgeFlow](https://github.com/JordiMForgeFlow.png?size=30px)](https://github.com/JordiMForgeFlow) | Trace journal entry posting date and user.
 [account_move_template](account_move_template/) | 12.0.1.1.0 |  | Templates for recurring Journal Entries
 [account_netting](account_netting/) | 12.0.1.0.0 |  | Compensate AR/AP accounts from the same partner
 [account_partner_required](account_partner_required/) | 12.0.1.0.0 |  | Adds an option 'partner policy' on account types

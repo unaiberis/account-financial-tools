@@ -40,6 +40,7 @@ setuptools.setup(
         'odoo12-addon-account_move_line_partner_country',
         'odoo12-addon-account_move_line_purchase_info',
         'odoo12-addon-account_move_line_tax_editable',
+        'odoo12-addon-account_move_post_date_user',
         'odoo12-addon-account_move_template',
         'odoo12-addon-account_netting',
         'odoo12-addon-account_partner_required',
