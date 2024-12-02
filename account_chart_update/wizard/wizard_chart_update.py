@@ -680,7 +680,7 @@ class WizardUpdateChartsAccounts(models.TransientModel):
                     continue
                 criteria = (field_name, "in", field_values)
 
-            result = fp_model.search(
+            result = fp_model.with_context(active_test=False).search(
                 [criteria, ("company_id", "=", self.company_id.id)], limit=1
             )
             if result:
