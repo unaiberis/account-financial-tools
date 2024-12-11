@@ -39,11 +39,11 @@ def migrate(env, version):
         openupgrade.logged_query(
             env.cr, """
             ALTER TABLE account_asset
-            DROP CONSTRAINT account_asset_parent_id_fkey""",
+            DROP CONSTRAINT IF EXISTS account_asset_parent_id_fkey""",
         )
         openupgrade.logged_query(
             env.cr, """
             ALTER TABLE account_asset_profile
-            DROP CONSTRAINT account_asset_profile_parent_id_fkey""",
+            DROP CONSTRAINT IF EXISTS account_asset_profile_parent_id_fkey""",
         )
         move_view_assets(env.cr)
